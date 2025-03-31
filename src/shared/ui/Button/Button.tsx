@@ -1,4 +1,4 @@
-import React, { ComponentProps, ReactNode } from "react";
+import { ComponentProps, ReactNode } from "react";
 import styles from "./style.module.scss";
 
 interface IProps extends ComponentProps<"button"> {

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import styles from "./style.module.scss";
 import { useStore } from "@/shared/store";
 import UserItem from "../UserItem/UserItem";

@@ -1,4 +1,4 @@
-import { createContext, ReactNode, use, useContext, useEffect, useRef, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useRef, useState } from "react";
 import { ContactsKeys, IContacts, IUser } from "../types";
 
 const letters: ContactsKeys[] = [

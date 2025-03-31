@@ -1,6 +1,5 @@
 import { RefObject } from "react";
 import { regulars } from "./constants";
-import { useStore } from "../store";
 
 type InputNames = "name" | "vacancy" | "phone";
 

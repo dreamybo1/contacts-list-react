@@ -8,6 +8,7 @@ interface IProps extends ComponentProps<"input"> {
 function Input(props: IProps) {
   const { className, ...rest } = props;
   const handleOnInput = (e: React.FormEvent<HTMLInputElement>) => {
+    // @ts-ignore
     e.currentTarget.style = ""
   };
   return <input onInput={handleOnInput} className={`${className} ${styles.input}`} {...rest} />

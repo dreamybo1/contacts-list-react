@@ -1,4 +1,3 @@
-import React from "react";
 import styles from './style.module.scss'
 import List from "../List/List";
 import ListItemUsers from "../ListItemUsers/ListItemUsers";

@@ -1,9 +1,9 @@
 import { Button, Input } from "@/shared/ui";
 import styles from "./style.module.scss";
 import { useStore } from "@/shared/store";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { IUser } from "@/shared/types";
-import { regulars, validateInputs } from "@/shared/model";
+import { validateInputs } from "@/shared/model";
 
 function MainForm() {
   const {addUser, clearAll, setSearchOpen, allUsers, setErrorValue, toggleError} = useStore()

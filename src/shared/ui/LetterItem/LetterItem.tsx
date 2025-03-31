@@ -1,4 +1,3 @@
-import React, { ComponentProps } from "react";
 import styles from "./style.module.scss";
 import { ContactsKeys } from "@/shared/types";
 import { useStore } from "@/shared/store";

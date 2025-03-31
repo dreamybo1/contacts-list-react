@@ -1,0 +1,18 @@
+.header {
+    font-weight: 600;
+    width: 50%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 5px solid black;
+    border-radius: 5px;
+    background-color: rgba(154, 158, 188, 0.313);
+    margin-bottom: 50px;
+
+    @media (max-width: 650px) {
+        margin-bottom: 30px;
+        width: 80%;
+        height: auto;
+    }
+}

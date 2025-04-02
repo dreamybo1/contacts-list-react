@@ -67,7 +67,9 @@ interface IProvider {
 
 function StoreProvider({ children }: IProvider) {
   const [letter, setLetterState] = useState<ProviderLetter>(null);
-  const [users, setUsersState] = useState<IContacts>(initialContacts);
+  const [users, setUsersState] = useState<IContacts>(
+    localStorage.getItem("users") ? JSON.parse(localStorage.getItem("users")!) : initialContacts
+  );
   const [searchOpen, setSearchOpen] = useState(false);
   const [editUserOpen, setEditUserOpen] = useState(false);
   const [userToChange, setUserToChange] = useState<IUser | null>(null);
@@ -143,6 +145,10 @@ function StoreProvider({ children }: IProvider) {
     }, 2000);
     return () => clearTimeout(timeout);
   }, [error]);
+
+  useEffect(() => {
+    localStorage.setItem("users", JSON.stringify(users));
+  }, [users]);
 
   return (
     <StoreContext.Provider

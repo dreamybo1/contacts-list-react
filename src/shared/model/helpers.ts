@@ -17,7 +17,7 @@ export function validateInputs(
         setError(`Error: empty fields`);
         toggleErorr();
         elem.current.style.border = "3px solid red";
-        elem.current.style.backgroundColor = "red";
+        elem.current.style.backgroundColor = "rgb(241, 157, 157)";
         error = true;
         return;
       }
@@ -26,7 +26,7 @@ export function validateInputs(
         setError(`Error: wrong field`);
         toggleErorr();
         elem.current.style.border = "3px solid red";
-        elem.current.style.backgroundColor = "red";
+        elem.current.style.backgroundColor = "rgb(241, 157, 157)";
         error = true;
         return;
       }

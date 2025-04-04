@@ -1,18 +1,22 @@
 import { IUser } from "@/shared/types";
 import styles from "./style.module.scss";
-import { useStore } from "@/shared/store";
+import { useAppDispatch } from "@/shared/hooks/hooks";
+import { removeUser, setUserToChange } from "@/shared/store/redux-toolkit/users/usersSlice";
+import { setEditUserOpen } from "@/shared/store/redux-toolkit/modals/modalsSlice";
 
 interface IProps {
   user: IUser;
 }
 
 function UserItem({ user }: IProps) {
+  const dispatch = useAppDispatch()
   const { id, name, vacancy, phone } = user;
-  const { removeUser, setEditUserOpen, setUserToChange } = useStore();
-  const handleRemove = () => removeUser(user);
+
+
+  const handleRemove = () => dispatch(removeUser(user));
   const handleEdit = () => {
-    setUserToChange(user);
-    setEditUserOpen(true);
+    dispatch(setUserToChange(user));
+    dispatch(setEditUserOpen(true));
   };
 
   return (

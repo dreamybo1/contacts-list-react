@@ -1,34 +1,8 @@
 import { createContext, ReactNode, useContext, useEffect, useRef, useState } from "react";
-import { ContactsKeys, IContacts, IUser } from "../types";
+import { ContactsKeys, IContacts, IUser } from "../../types";
+import { letters } from "../../consts/letter";
 
-const letters: ContactsKeys[] = [
-  "A",
-  "B",
-  "C",
-  "D",
-  "E",
-  "F",
-  "G",
-  "H",
-  "I",
-  "J",
-  "K",
-  "L",
-  "M",
-  "N",
-  "O",
-  "P",
-  "Q",
-  "R",
-  "S",
-  "T",
-  "U",
-  "V",
-  "W",
-  "X",
-  "Y",
-  "Z"
-];
+
 
 const initialContacts: IContacts = letters.reduce((acc, curr) => {
   acc[curr] = [];
@@ -92,7 +66,6 @@ function StoreProvider({ children }: IProvider) {
 
   const addUser = (user: IUser) => {
     let firstLetter = user.name[0]?.toUpperCase() as ContactsKeys;
-    console.log(users, firstLetter);
 
     setUsersState(
       users[firstLetter]?.length > 0
@@ -124,7 +97,6 @@ function StoreProvider({ children }: IProvider) {
       return;
     }
     let userIndex = users[firstLetter]?.findIndex(el => el.id === user.id);
-    console.log("INDEX", userIndex, "ARRAY", users[firstLetter], "LETTER", firstLetter, "USERTOCHANGE", user);
     let newArr = [...users[firstLetter]];
 
     newArr[userIndex] = { ...newArr[userIndex], ...editedFields } as IUser;
@@ -155,18 +127,18 @@ function StoreProvider({ children }: IProvider) {
       value={{
         letter,
         allLetters,
-        users,
         setLetter,
+        users,
+        allUsers,
         addUser,
         removeUser,
         editUser,
         clearAll,
-        allUsers,
         searchOpen,
         setEditUserOpen,
         setSearchOpen,
-        userToChange,
         setUserToChange,
+        userToChange,
         editUserOpen,
         error,
         errorValue,

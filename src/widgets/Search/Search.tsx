@@ -1,10 +1,10 @@
-import { useStore } from "@/shared/store";
 import styles from "./style.module.scss";
 import { ChangeEvent, useState } from "react";
 import UserItem from "../UserItem/UserItem";
+import { useAppSelector } from "@/shared/hooks/hooks";
 
 function Search() {
-  const { allUsers } = useStore();
+  const { allUsers } = useAppSelector(state => state.users);
   const [searchValue, setSearchValue] = useState("");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

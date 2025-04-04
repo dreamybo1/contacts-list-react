@@ -1,5 +1,5 @@
 import { RefObject } from "react";
-import { regulars } from "./constants";
+import { regulars } from "./regulars";
 
 type InputNames = "name" | "vacancy" | "phone";
 

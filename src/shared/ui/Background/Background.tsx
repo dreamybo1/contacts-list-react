@@ -12,7 +12,6 @@ const Particles: FC = () => {
   const mouse = useRef<MouseRef>({ x: 0, y: 0 });
   const velocitiesRef = useRef<number[]>([]);
 
-  // Генерируем позиции, цвета и скорости один раз при инициализации компонента
   const [positions, colors] = useMemo(() => {
     const positions: number[] = [];
     const colors: number[] = [];
@@ -33,7 +32,6 @@ const Particles: FC = () => {
     return [new Float32Array(positions), new Float32Array(colors)];
   }, []);
 
-  // Обработчик движения мыши для обновления координат относительно центра экрана
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
       mouse.current.x = event.clientX - window.innerWidth / 2;
@@ -43,7 +41,6 @@ const Particles: FC = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Обновляем позиции частиц и вращение каждый кадр
   useFrame(() => {
     const points = pointsRef.current;
     if (!points) return;
@@ -57,11 +54,9 @@ const Particles: FC = () => {
     const positionsArray = positionAttribute.array as Float32Array;
   
     const velocities = velocitiesRef.current;
-    // Если вдруг длины не совпадают, можно добавить проверку:
     if (velocities.length < positionsArray.length) return;
   
     for (let i = 0; i < positionsArray.length; i += 3) {
-      // Используем оператор non-null (!) для явного указания, что значение определено
       positionsArray[i]!     += velocities[i]!;
       positionsArray[i + 1]! += velocities[i + 1]!;
       positionsArray[i + 2]! += velocities[i + 2]!;

@@ -1,4 +1,4 @@
-import { regulars } from "./constants";
+import { regulars } from "./regulars";
 import { validateInputs } from "./helpers";
 
 export {

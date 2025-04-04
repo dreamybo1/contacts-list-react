@@ -1,10 +1,11 @@
 import { useEffect, useRef } from "react";
 import styles from "./style.module.scss";
-import { useStore } from "@/shared/store";
 import UserItem from "../UserItem/UserItem";
+import { useAppSelector } from "@/shared/hooks/hooks";
 
 function ListItemUsers() {
-  const { letter, users } = useStore();
+  const { letter } = useAppSelector(state => state.letters);
+  const { users } = useAppSelector(state => state.users);
   const listRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

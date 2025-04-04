@@ -2,12 +2,16 @@ import { Button, Input } from "@/shared/ui";
 import styles from "./style.module.scss";
 import { useRef, useState } from "react";
 import { IUser } from "@/shared/types";
-import { useStore } from "@/shared/store";
 import { validateInputs } from "@/shared/model";
+import { useAppDispatch, useAppSelector } from "@/shared/hooks/hooks";
+import { editUser, setUserToChange } from "@/shared/store/redux-toolkit/users/usersSlice";
+import { setEditUserOpen } from "@/shared/store/redux-toolkit/modals/modalsSlice";
+import { setErrorValue, toggleError } from "@/shared/store/redux-toolkit/errors/errorsSlice";
 
 function EditForm() {
-  const { userToChange, editUser, setUserToChange, setEditUserOpen, toggleError, setErrorValue } = useStore();
+  const { userToChange } = useAppSelector(state => state.users);
   const { id, name, vacancy, phone } = userToChange!;
+  const dispatch = useAppDispatch();
 
   const [formData, setFormData] = useState<Omit<IUser, "id">>({
     name: name,
@@ -17,21 +21,28 @@ function EditForm() {
   const nameref = useRef<HTMLInputElement>(null);
   const vacancyref = useRef<HTMLInputElement>(null);
   const phoneref = useRef<HTMLInputElement>(null);
-  console.log(formData, "FORMA");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const handleToggle = () => {
+    dispatch(toggleError())
+  }
+
+  const handleSetErrorValue = (value: string) => {
+    dispatch(setErrorValue(value))
+  }
+
   const handleApply = () => {
-    if (validateInputs([nameref, vacancyref, phoneref], toggleError, setErrorValue)) {
+    if (validateInputs([nameref, vacancyref, phoneref], handleToggle, handleSetErrorValue)) {
       return;
     }
-    setUserToChange(null);
-    setEditUserOpen(false);
+    dispatch(setUserToChange(null));
+    dispatch(setEditUserOpen(false));
     if (userToChange) {
-      editUser(userToChange, formData);
+      dispatch(editUser({user:userToChange, editedFields:formData}));
       const el: HTMLDivElement = document.querySelector(`[data-id="${id}"]`)!;
       el.classList.add(`${styles.edited}`);
       setTimeout(() => {

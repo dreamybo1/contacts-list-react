@@ -1,1 +1,3 @@
-DEPLOY: https://iridescent-zabaione-60c8f8.netlify.app/
+REDUX-TOOLKIT VERSION
+
+DEPLOY: https://fluffy-gumdrop-69ea4c.netlify.app/
